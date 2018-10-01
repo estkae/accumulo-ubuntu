@@ -2,8 +2,8 @@
 REPOSITORY=cybermaggedon/accumulo
 VERSION=$(shell git describe | sed 's/^v//')
 ZOOKEEPER_VERSION=3.4.12
-HADOOP_VERSION=2.9.1
-ACCUMULO_VERSION=1.9.1
+HADOOP_VERSION=3.1.1
+ACCUMULO_VERSION=1.9.2
 
 SUDO=
 BUILD_ARGS=--build-arg ZOOKEEPER_VERSION=${ZOOKEEPER_VERSION} \
@@ -32,9 +32,9 @@ push:
 	${SUDO} docker push ${REPOSITORY}:${VERSION}
 
 # Continuous deployment support
-BRANCH=master
-FILE=accumulo-version
-REPO=git@github.com:cybermaggedon/gaffer-docker
+# BRANCH=master
+# FILE=accumulo-version
+# REPO=git@github.com:cybermaggedon/gaffer-docker
 
 tools: phony
 	if [ ! -d tools ]; then \
