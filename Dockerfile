@@ -6,10 +6,13 @@ ARG ACCUMULO_VERSION=1.9.2
 
 RUN echo -e "\n* soft nofile 65536\n* hard nofile 65536" >> /etc/security/limits.conf
 
-RUN dnf install -y tar
-RUN dnf install -y java-1.8.0-openjdk
-RUN dnf install -y procps-ng hostname
-RUN dnf install -y which
+RUN apt-get install -y tar
+RUN apt-get update 
+RUN apt-get install -y --no-install-recommends apt-utils
+# RUN add-apt-repository ppa:openjdk-r/ppa
+RUN apt-get install -y default-jdk
+# RUN apt-get install -y which
+# RUN apt-get install -y procps-ng hostname
 
 # hadoop
 ADD hadoop-${HADOOP_VERSION}.tar.gz /usr/local/
@@ -24,8 +27,8 @@ ADD accumulo-${ACCUMULO_VERSION}-bin.tar.gz /usr/local/
 RUN ln -s /usr/local/accumulo-${ACCUMULO_VERSION} /usr/local/accumulo
 
 # Diagnostic tools :/
-RUN dnf install -y net-tools
-RUN dnf install -y telnet
+RUN apt-get install -y net-tools
+RUN apt-get install -y telnet
 
 ENV ACCUMULO_HOME /usr/local/accumulo
 ENV PATH $PATH:$ACCUMULO_HOME/bin
