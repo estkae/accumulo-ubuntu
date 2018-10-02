@@ -1,5 +1,5 @@
 
-REPOSITORY=cybermaggedon/accumulo
+REPOSITORY=estkae/accumulo
 VERSION=$(shell git describe | sed 's/^v//')
 ZOOKEEPER_VERSION=3.4.12
 HADOOP_VERSION=3.1.1
@@ -36,17 +36,17 @@ push:
 # FILE=accumulo-version
 # REPO=git@github.com:cybermaggedon/gaffer-docker
 
-tools: phony
-	if [ ! -d tools ]; then \
-		git clone git@github.com:trustnetworks/cd-tools tools; \
-	fi; \
-	(cd tools; git pull)
+# tools: phony
+# 	if [ ! -d tools ]; then \
+# 		git clone git@github.com:trustnetworks/cd-tools tools; \
+# 	fi; \
+# 	(cd tools; git pull)
 
-phony:
+# phony:
 
-bump-version: tools
-	tools/bump-version
+# bump-version: tools
+# 	tools/bump-version
 
-update-cluster-config: tools
-	tools/update-version-file ${BRANCH} ${VERSION} ${FILE} ${REPO}
+# update-cluster-config: tools
+# 	tools/update-version-file ${BRANCH} ${VERSION} ${FILE} ${REPO}
 
